@@ -12,7 +12,7 @@ public class StudentService {
 	int tDays = 0, clss8Days = 0, clss9Days = 0, clss10Days = 0, count = 0, totalMarks = 0;
 	double clss8Earnings = 0, clss9Earnings = 0, clss10Earnings = 0, tEarnings = 0, banglaTEarnings = 0,
 			englishTEarnings = 0, mathTEarnings = 0;
-	List<Integer> class8List=new ArrayList<>(),class9List=new ArrayList<>(),class10List=new ArrayList<>();
+	List<Integer> class8List = new ArrayList<>(), class9List = new ArrayList<>(), class10List = new ArrayList<>();
 
 	/*
 	 * this method is for adding the studnet information
@@ -68,7 +68,7 @@ public class StudentService {
 		System.out.println("\n\nDo you want to see specific info? y/n");
 		sc.nextLine();
 		String yn = sc.nextLine();
-		 
+
 		if (yn.equals("y")) {
 			System.out.println("Enter Name: ");
 			String name = sc.nextLine();
@@ -102,7 +102,7 @@ public class StudentService {
 	public void showOverAllInfo() {
 		st.forEach((student) -> {
 			count++;
-			
+
 			if (student.getChoosenClass() == 8) {
 				class8List.add(student.getTotalDays());
 				clss8Earnings += student.getTotalEarnings();
@@ -124,14 +124,17 @@ public class StudentService {
 			if (student.isMath()) {
 				mathTEarnings += student.getTotalDays();
 			}
-			
+
 			tEarnings += student.getTotalEarnings();
 			totalMarks += student.getAvgMarks();
 		});
-		if(class8List!=null && !class8List.isEmpty()) clss8Days = Collections.max(class8List);
-		if(class9List!=null && !class9List.isEmpty()) clss9Days = Collections.max(class9List);
-		if(class10List!=null && !class10List.isEmpty()) clss10Days = Collections.max(class10List);
-		tDays=clss8Days+clss9Days+clss10Days;//total days of all classes
+		if (class8List != null && !class8List.isEmpty())
+			clss8Days = Collections.max(class8List);
+		if (class9List != null && !class9List.isEmpty())
+			clss9Days = Collections.max(class9List);
+		if (class10List != null && !class10List.isEmpty())
+			clss10Days = Collections.max(class10List);
+		tDays = clss8Days + clss9Days + clss10Days;// total days of all classes
 		int totalAvgMarks = totalMarks / count;
 		System.out.println("a. The total days taught across all classes: " + tDays);
 		System.out.println("b. Individual days taught in each class: Class 8=" + clss8Days + ", Class 9=" + clss9Days
@@ -142,10 +145,22 @@ public class StudentService {
 		System.out.println("e. Individual earnings of each subject: Bangla: " + banglaTEarnings + ", English: "
 				+ englishTEarnings + ", math: " + mathTEarnings);
 		System.out.println("f. Average marks of all students: " + totalAvgMarks);
-		 tDays = 0; clss8Days = 0; clss9Days = 0; clss10Days = 0; count = 0; totalMarks = 0;
-		 clss8Earnings = 0; clss9Earnings = 0; clss10Earnings = 0; tEarnings = 0; banglaTEarnings = 0;
-				englishTEarnings = 0; mathTEarnings = 0;
-				class8List=new ArrayList<>();class9List=new ArrayList<>();class10List=new ArrayList<>();
+		tDays = 0;
+		clss8Days = 0;
+		clss9Days = 0;
+		clss10Days = 0;
+		count = 0;
+		totalMarks = 0;
+		clss8Earnings = 0;
+		clss9Earnings = 0;
+		clss10Earnings = 0;
+		tEarnings = 0;
+		banglaTEarnings = 0;
+		englishTEarnings = 0;
+		mathTEarnings = 0;
+		class8List = new ArrayList<>();
+		class9List = new ArrayList<>();
+		class10List = new ArrayList<>();
 
 	}
 
