@@ -17,10 +17,6 @@ public class ProductController {
 	@GetMapping("/products")
 	public String getProductPage(Model model) {
 		List<Product> productList = productServic.getProducts();
-//		for(Product p: postList) {
-//			System.out.println(p.isPinnedPost());
-//		}
-		//model.addAttribute("userName",user.getFirstName()+" "+user.getLastName());
 		model.addAttribute("productList",productList);
 		return "product";
 	}
