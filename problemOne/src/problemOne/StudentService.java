@@ -1,25 +1,22 @@
 package problemOne;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
 public class StudentService {
 	List<StudentInfo> st = new ArrayList<StudentInfo>();
 	Scanner sc = new Scanner(System.in);
-	int tDays = 0;
-	int clss8Days = 0;
-	int clss8Earnings = 0;
-	int clss9Days = 0;
-	int clss9Earnings = 0;
-	int clss10Days = 0;
-	int clss10Earnings = 0;
-	int tEarnings = 0;
-	int count = 0;
-	int totalMarks = 0;
-/*
- * this method is for adding the studnet information
- */
+	int tDays = 0, clss8Days = 0, clss9Days = 0, clss10Days = 0, count = 0, totalMarks = 0;
+	double clss8Earnings = 0, clss9Earnings = 0, clss10Earnings = 0, tEarnings = 0, banglaTEarnings = 0,
+			englishTEarnings = 0, mathTEarnings = 0;
+	List<Integer> class8List=new ArrayList<>(),class9List=new ArrayList<>(),class10List=new ArrayList<>();
+
+	/*
+	 * this method is for adding the studnet information
+	 */
 	public void addStudent() {
 		System.out.println("Choose a class:");
 		int choosenClass = sc.nextInt();
@@ -69,7 +66,9 @@ public class StudentService {
 			}
 		});
 		System.out.println("\n\nDo you want to see specific info? y/n");
+		sc.nextLine();
 		String yn = sc.nextLine();
+		 
 		if (yn.equals("y")) {
 			System.out.println("Enter Name: ");
 			String name = sc.nextLine();
@@ -103,22 +102,36 @@ public class StudentService {
 	public void showOverAllInfo() {
 		st.forEach((student) -> {
 			count++;
-			tDays += student.getTotalDays();
+			
 			if (student.getChoosenClass() == 8) {
-				clss8Days += student.getTotalDays();
+				class8List.add(student.getTotalDays());
 				clss8Earnings += student.getTotalEarnings();
 			}
 			if (student.getChoosenClass() == 9) {
-				clss9Days += student.getTotalDays();
+				class9List.add(student.getTotalDays());
 				clss9Earnings += student.getTotalEarnings();
 			}
 			if (student.getChoosenClass() == 10) {
-				clss10Days += student.getTotalDays();
+				class10List.add(student.getTotalDays());
 				clss10Earnings += student.getTotalEarnings();
 			}
+			if (student.isBangla()) {
+				banglaTEarnings += student.getTotalDays();
+			}
+			if (student.isEnglish()) {
+				englishTEarnings += student.getTotalDays();
+			}
+			if (student.isMath()) {
+				mathTEarnings += student.getTotalDays();
+			}
+			
 			tEarnings += student.getTotalEarnings();
 			totalMarks += student.getAvgMarks();
 		});
+		if(class8List!=null && !class8List.isEmpty()) clss8Days = Collections.max(class8List);
+		if(class9List!=null && !class9List.isEmpty()) clss9Days = Collections.max(class9List);
+		if(class10List!=null && !class10List.isEmpty()) clss10Days = Collections.max(class10List);
+		tDays=clss8Days+clss9Days+clss10Days;//total days of all classes
 		int totalAvgMarks = totalMarks / count;
 		System.out.println("a. The total days taught across all classes: " + tDays);
 		System.out.println("b. Individual days taught in each class: Class 8=" + clss8Days + ", Class 9=" + clss9Days
@@ -126,8 +139,14 @@ public class StudentService {
 		System.out.println("c. Total earnings: " + tEarnings);
 		System.out.println("d. Individual earnings of each class: Class 8 : " + clss8Earnings + ", Class 9: "
 				+ clss9Earnings + ", Class 10: " + clss10Earnings);
-		System.out.println("f. Average marks of all students: "+totalAvgMarks);
-		
+		System.out.println("e. Individual earnings of each subject: Bangla: " + banglaTEarnings + ", English: "
+				+ englishTEarnings + ", math: " + mathTEarnings);
+		System.out.println("f. Average marks of all students: " + totalAvgMarks);
+		 tDays = 0; clss8Days = 0; clss9Days = 0; clss10Days = 0; count = 0; totalMarks = 0;
+		 clss8Earnings = 0; clss9Earnings = 0; clss10Earnings = 0; tEarnings = 0; banglaTEarnings = 0;
+				englishTEarnings = 0; mathTEarnings = 0;
+				class8List=new ArrayList<>();class9List=new ArrayList<>();class10List=new ArrayList<>();
+
 	}
 
 	/*

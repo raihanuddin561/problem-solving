@@ -31,6 +31,24 @@ public class StudentInfo {
 		
 	}
 	
+	
+	public StudentInfo(int choosenClass, String name, boolean math, boolean english, boolean bangla, boolean deleted) {
+		super();
+		this.choosenClass = choosenClass;
+		this.name = name;
+		this.math = math;
+		this.english = english;
+		this.bangla = bangla;
+		this.deleted = deleted;
+	}
+	public StudentInfo(int choosenClass, String name, boolean math, boolean english, boolean bangla) {
+		super();
+		this.choosenClass = choosenClass;
+		this.name = name;
+		this.math = math;
+		this.english = english;
+		this.bangla = bangla;
+	}
 	public StudentInfo(int choosenClass, String name, boolean math, boolean english, boolean bangla, double avgMarks,
 			int totalDays, double totalEarnings, boolean deleted) {
 		super();
